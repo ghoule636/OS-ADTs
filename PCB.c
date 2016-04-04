@@ -8,8 +8,8 @@
 #endif
 
 PCB_p PCB_construct(void) {
-  PCB_p *result = malloc(sizeof(PCB));
-  return *result;
+  PCB_p result = malloc(sizeof(PCB));
+  return result;
 }
 
 void PCB_destruct(PCB_p thePCB) {
