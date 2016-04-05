@@ -5,20 +5,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node {
-    int nextNode;
-    
+struct Node {
+	int data;
+    int pcb;
+	struct Node* next;
+} Node;
 
-}
-
-
-typedef struct FIFO {
-    int head;
-
-
-} FIFO;
-
-
-
-int enqueue(headAddress);
-int dequeue();
+void enqueue(int theElement);
+int dequeue(void);
