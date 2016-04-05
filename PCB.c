@@ -34,6 +34,16 @@ int PCB_set_pid(PCB_p thePCB, unsigned long thePID) {
   }
 }
 
+unsigned short PCB_get_priority(PCB_p thePCB) {
+  return thePCB->priority;
+}
+
+void PCB_set_priority(PCB_p thePCB, unsigned short theNum) {
+  if (theNum) {
+    thePCB->priority = theNum;
+  }
+}
+
 unsigned long PCB_get_pid(PCB_p thePCB) {
   return thePCB->pid;
 }
@@ -64,7 +74,7 @@ void PCB_toString(PCB_p thePCB, char *theStr) {
       strcpy(state, "halted");
     }
 
-    sprintf(theStr, "PID: %X, State: %s, Priority: %X, PC: %X\n",
-      thePCB->pid, thePCB->priority, thePCB->pc);
+    sprintf(theStr, "PID: 0x%X, State: %s, Priority: 0x%X, PC: 0x%X\n",
+      thePCB->pid, state, thePCB->priority, thePCB->pc);
   }
 }
