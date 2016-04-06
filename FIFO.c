@@ -3,7 +3,7 @@
 struct Node* head = NULL;
 struct Node* tail = NULL;
 
-void enqueue(int theElement) {
+void enqueue(PCB_p theElement) {
 	struct Node* temp = (struct Node*) malloc(sizeof(struct Node));
 	temp->data = theElement;
 	temp->next = NULL;
@@ -15,40 +15,44 @@ void enqueue(int theElement) {
 	tail = temp;
 }
 
-int dequeue(void) {
-    int value = -100; // No value in queue
+PCB_p dequeue(void) {
+    int value = NULL; // No value in queue
 	if(head == tail) {
-        value = head->pcb;
+        value = head->data;
 		head = tail = NULL;
 	}
 	else {
-        value = head->pcb;
+        value = head->data;
 		head = head->next;
 	}
     return value;
 }
 
-// int get_head(void) {
-// 	if(head == NULL) {
-// 		printf("Queue is empty\n");
-// 		return -1;
+// void Print(void) {
+// 	struct Node* temp = head;
+// 	while(temp != NULL) {
+// 		printf("%d ",temp->data);
+// 		temp = temp->next;
 // 	}
-// 	return head->data;
+// 	printf("\n");
 // }
 
-void Print(void) {
-	struct Node* temp = head;
-	while(temp != NULL) {
-		printf("%d ",temp->data);
-		temp = temp->next;
-	}
-	printf("\n");
-}
+int main() {
 
-int main(){
-	enqueue(2); Print();
-	enqueue(4); Print();
-	enqueue(6); Print();
-	dequeue();  Print();
-	enqueue(8); Print();
+	PCB_p test = PCB_construct();
+	PCB_init(test);
+
+
+	enqueue(test);
+
+	PCB_p test2 = dequeue();
+
+	char * testStr = malloc(50);
+	PCB_toString(test, testStr);
+	printf("contents: %s", testStr);
+
+
+
+
+
 }
