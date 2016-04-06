@@ -6,10 +6,17 @@
 #include <stdlib.h>
 #include "PCB.h"
 
-struct Node {
+typedef struct Node {
     PCB_p data;
+    struct Node* head;
+    struct Node* tail;
 	struct Node* next;
 } Node;
 
-void enqueue(PCB_p theElement);
-PCB_p dequeue(void);
+typedef struct Node *FIFO;
+
+FIFO FIFO_construct(void);
+void FIFO_init(FIFO theFIFO);
+
+void enqueue(FIFO theNode, PCB_p theElement);
+PCB_p dequeue(FIFO theNode);
