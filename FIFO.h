@@ -4,12 +4,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "PCB.h"
 
-struct Node {
-	int data;
-    int pcb;
+typedef struct Node {
+    PCB_p data;
+    struct Node* head;
+    struct Node* tail;
 	struct Node* next;
 } Node;
 
-void enqueue(int theElement);
-int dequeue(void);
+typedef struct Node *FIFO;
+
+FIFO FIFO_construct(void);
+void FIFO_init(FIFO theFIFO);
+
+void enqueue(FIFO theNode, PCB_p theElement);
+PCB_p dequeue(FIFO theNode);

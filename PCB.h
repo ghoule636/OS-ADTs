@@ -19,7 +19,7 @@ typedef struct PCB * PCB_p;
 
 PCB_p PCB_construct(void); // returns a pcb pointer to heap allocation
 void PCB_destruct(PCB_p);  // deallocates pcb from the heap
-int PCB_init(PCB_p);       // sets default values for member data
+void PCB_init(PCB_p);       // sets default values for member data
 int PCB_set_pid(PCB_p, unsigned long pid); //sets value of pid for this process
 unsigned short PCB_get_priority(PCB_p);
 void PCB_set_priority(PCB_p, unsigned short);
@@ -33,4 +33,3 @@ void PCB_toString(PCB_p, char *);  // returns a string representing the contents
 #define ADT
 #include "PCB.c"
 #endif
-
