@@ -18,7 +18,7 @@ void PCB_destruct(PCB_p thePCB) {
   }
 }
 
-int PCB_init(PCB_p thePCB) {
+void PCB_init(PCB_p thePCB) {
 
   //not sure what values to give.
 
