@@ -4,12 +4,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "PCB.h"
 
 struct Node {
-	int data;
-    int pcb;
+    PCB_p data;
 	struct Node* next;
 } Node;
 
-void enqueue(int theElement);
-int dequeue(void);
+void enqueue(PCB_p theElement);
+PCB_p dequeue(void);
