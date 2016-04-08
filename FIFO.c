@@ -8,7 +8,7 @@
 #endif
 
 FIFO FIFO_construct(void) {
-    FIFO result = (FIFO) malloc(sizeof(FIFO));
+    FIFO result = (FIFO) malloc(sizeof(struct FIFO));
     return result;
 }
 
@@ -34,10 +34,11 @@ void FIFO_init(FIFO theFIFO) {
 }
 
 void enqueue(FIFO theFIFO, PCB_p theElement) {
-  theFIFO->size = theFIFO->size + 1;
-	struct Node* temp = (struct Node*) malloc(sizeof(Node));
+    theFIFO->size = theFIFO->size + 1;
+
+	struct Node* temp = (struct Node*) malloc(sizeof(struct Node));
 	temp->data = theElement;
-  temp->next = NULL;
+    temp->next = NULL;
 	if(theFIFO->head == NULL && theFIFO->tail == NULL){
 		theFIFO->head = theFIFO->tail = temp;
 		return;
@@ -48,7 +49,7 @@ void enqueue(FIFO theFIFO, PCB_p theElement) {
 
 
 PCB_p dequeue(FIFO theFIFO) {
-  PCB_p value = NULL; // No value in queue
+    PCB_p value = NULL; // No value in queue
 	if (theFIFO->head && theFIFO->head == theFIFO->tail) {
     value = theFIFO->head->data;
 		theFIFO->head = theFIFO->tail = NULL;
@@ -56,35 +57,35 @@ PCB_p dequeue(FIFO theFIFO) {
 	else if (theFIFO->head != NULL){
     value = theFIFO->head->data;
     Node *temp = theFIFO->head;
-		theFIFO->head = theFIFO->head->next;
+	theFIFO->head = theFIFO->head->next;
     free(temp);
     temp = NULL;
 	}
-  if (value != NULL) theFIFO->size = theFIFO->size - 1;
+    if (value != NULL) theFIFO->size = theFIFO->size - 1;
 
-  return value;
+    return value;
 }
 
 void FIFO_toString(FIFO theFIFO, char *theStr) {
-  if (theStr) {
+    if (theStr) {
+        strcpy(theStr, "");
+        int i, loops = 0;
+        char buf[13];
 
-    strcpy(theStr, "");
-    int i, loops = 0;
-    char buf[13];
+        loops += theFIFO->size;
 
-    loops += theFIFO->size;
+        sprintf(buf, "Count=%d: ", loops); // puts string into buffer
 
-    sprintf(buf, "Count=%d: ", loops); // puts string into buffer
-    strcat(theStr,buf);
-    PCB_p liveData;
+        strcat(theStr,buf);
+        PCB_p liveData;
 
-    for (i = 1; i <= loops; i++) {
-      liveData = dequeue(theFIFO); // Pick off the head of the queue//
-      enqueue(theFIFO, liveData); // Put it on the back//
+        for (i = 1; i <= loops; i++) {
+            liveData = dequeue(theFIFO); // Pick off the head of the queue//
+            enqueue(theFIFO, liveData); // Put it on the back//
 
-      if (i < loops) sprintf(buf, "P%d->", liveData->pid);
-      if (i == loops) sprintf(buf, "P%d-*", liveData->pid);
-      strcat(theStr,buf);
-    }
+            if (i < loops) sprintf(buf, "P%lu->", liveData->pid);
+            if (i == loops) sprintf(buf, "P%lu-*", liveData->pid);
+            strcat(theStr,buf);
+        }
 	}
 }
