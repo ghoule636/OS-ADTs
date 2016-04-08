@@ -1,24 +1,22 @@
+#include <time.h>
 #include "FIFO.c"
+
 int main() {
+	srand(time(NULL));
+	int i, random = 10 + (rand() % 21);
 
-	FIFO myFIFO = FIFO_construct();
-	FIFO_init(myFIFO);
+	FIFO testFIFO = FIFO_construct();
+	FIFO_init(testFIFO);
 
-	PCB_p test = PCB_construct();
-    PCB_init(test);
+	PCB_p testPCB = PCB_construct();
+    PCB_init(testPCB);
 
-	enqueue(myFIFO, test);
-    enqueue(myFIFO, test);
-    enqueue(myFIFO, test);
+	for (i = 0; i < random; i++) {
+		enqueue(testFIFO, testPCB);
+		char * testStr = malloc(10000);
+		FIFO_toString(testFIFO, testStr);
+		printf("%s\n", testStr);
+	}
 
-
-	// PCB_p test2 = dequeue(myFIFO);
-    //
-	// char * testStr = malloc(50);
-	// PCB_toString(test2, testStr);
-	// printf("contents: %s", testStr);
-
-    char * testStr = malloc(10000);
-    FIFO_toString(myFIFO, testStr);
-    printf("YO: %s", testStr);
+	FIFO_deconstruct(testFIFO);
 }
