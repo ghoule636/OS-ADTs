@@ -1,5 +1,8 @@
 /*
  * Group 3 OS ADTs
+ * Spring 2016
+ * Authors: Gabriel Houle & Edgardo Gutierrez Jr.
+ * GitHub: https://github.com/ghoule636/OS-ADTs.git
  */
 
 #ifndef PQ
@@ -52,7 +55,7 @@ PCB_p PQ_dequeue(PQ_p theQ) {
 
 void PQ_toString(PQ_p theQ, char *theStr) {
   if (theStr) {
-    
+
     char *testStr = malloc(10000);
     char *appendStr = malloc(1000);
     int i;
