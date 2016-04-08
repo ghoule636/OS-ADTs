@@ -23,17 +23,25 @@ PQ_p PQ_construct(void) {
   return result;
 }
 
+void PQ_destruct(PQ_p theQ) {
+  if (theQ) {
+    int i;
+    for (i = 0; i < MAX_PRIORITIES; i++) {
+      FIFO_deconstruct(theQ->priority[i]);
+    }
+    free(theQ);
+  }
+}
+
 void PQ_enqueue(PQ_p theQ, PCB_p thePCB) {
   enqueue(theQ->priority[thePCB->priority], thePCB);
 }
 
 PCB_p PQ_dequeue(PQ_p theQ) {
-  printf("Hello!\n");
   int i;
   int end = 0;
   PCB_p result = NULL;
   for (i = 0; i < MAX_PRIORITIES && !end; i++) {
-    printf("looping %d\n", i);
     if (theQ->priority[i]->head) {
       result = dequeue(theQ->priority[i]);
       end = 1;
@@ -42,6 +50,22 @@ PCB_p PQ_dequeue(PQ_p theQ) {
   return result;
 }
 
-void toString(PQ_p theQ) {
+void PQ_toString(PQ_p theQ, char *theStr) {
+  if (theStr) {
+    
+    char *testStr = malloc(10000);
+    char *appendStr = malloc(1000);
+    int i;
 
+    for (i = 0; i < MAX_PRIORITIES; i++) {
+      FIFO temp = theQ->priority[i];
+      if (temp->head) {
+        FIFO_toString(temp, testStr);
+        sprintf(appendStr, "Q%d: %s\n", i, testStr);
+        strcat(theStr, appendStr);
+      }
+    }
+    free(testStr);
+    free(appendStr);
+  }
 }

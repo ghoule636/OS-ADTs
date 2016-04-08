@@ -7,21 +7,22 @@
 #include <string.h>
 
 typedef struct Node {
-    PCB_p data;
+  PCB_p data;
 	struct Node* next;
 } Node;
 
 typedef struct FIFO {
-    struct Node* head;
-    struct Node* tail;
-    int size;
+  struct Node* head;
+  struct Node* tail;
+  int size;
 } *FIFO;
 
 FIFO FIFO_construct(void);
-void FIFO_init(FIFO theFIFO);
-
-void enqueue(FIFO theNode, PCB_p theElement);
-PCB_p dequeue(FIFO theNode);
+void FIFO_deconstruct(FIFO);
+void FIFO_init(FIFO);
+void FIFO_toString(FIFO, char *);
+void enqueue(FIFO, PCB_p);
+PCB_p dequeue(FIFO);
 
 #ifndef Q
 #define Q
