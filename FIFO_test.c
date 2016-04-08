@@ -1,6 +1,9 @@
 /*
-* Group 3 OS ADTs
-*/
+ * Group 3 OS ADTs
+ * Spring 2016
+ * Authors: Gabriel Houle & Edgardo Gutierrez Jr.
+ * GitHub: https://github.com/ghoule636/OS-ADTs.git
+ */
 
 #include <time.h>
 #include "PCB.h"
