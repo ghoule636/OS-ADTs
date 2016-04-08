@@ -1,3 +1,7 @@
+/*
+* Group 3 OS ADTs
+*/
+
 #include <time.h>
 #include "PCB.h"
 #include "FIFO.h"
@@ -9,24 +13,36 @@ int main() {
 	FIFO testFIFO = FIFO_construct();
 	FIFO_init(testFIFO);
 
-	printf("\n\n\nTEST: %d\n\n\n", testFIFO->size);
+  char * testStr = malloc(1000);
+  char * pcbString = malloc(50);
 
-
-	PCB_p testPCB = PCB_construct();
+	for (i = 1; i <= random; i++) {
+    PCB_p testPCB = PCB_construct();
     PCB_init(testPCB);
 
-<<<<<<< HEAD
-	random = 3; // DELETE THIS, FOR TESTS
+    PCB_set_pid(testPCB, i);
+    PCB_set_priority(testPCB, rand() % 16);
 
-	for (i = 0; i < random; i++) {
-=======
-	for (i = 0; i < 5; i++) {
->>>>>>> master
 		enqueue(testFIFO, testPCB);
-		char * testStr = malloc(10000);
+
 		FIFO_toString(testFIFO, testStr);
-		printf("%s\n", testStr);
+		printf("Q:%s ", testStr);
+    
+    PCB_toString(testPCB, pcbString);
+    printf("%s\n", pcbString);
 	}
 
-	// FIFO_deconstruct(testFIFO);
+  for (i = 1; i < random; i++) {
+    PCB_p testPCB = dequeue(testFIFO);
+    FIFO_toString(testFIFO, testStr);
+    printf("Q:%s ", testStr);
+
+    PCB_toString(testPCB, pcbString);
+    printf("%s\n", pcbString);
+    PCB_destruct(testPCB);
+  }
+
+  free(testStr);
+	FIFO_deconstruct(testFIFO);
+  return 0;
 }
