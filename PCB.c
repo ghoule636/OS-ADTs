@@ -74,7 +74,7 @@ void PCB_toString(PCB_p thePCB, char *theStr) {
       strcpy(state, "halted");
     }
 
-    sprintf(theStr, "PID: 0x%X, State: %s, Priority: 0x%X, PC: 0x%X\n",
+    sprintf(theStr, "PID: 0x%X, State: %s, Priority: 0x%X, PC: 0x%X",
       thePCB->pid, state, thePCB->priority, thePCB->pc);
   }
 }

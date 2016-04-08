@@ -7,18 +7,16 @@ int main() {
 	PCB_p test = PCB_construct();
     PCB_init(test);
 
-	enqueue(myFIFO, test);
-    enqueue(myFIFO, test);
-    enqueue(myFIFO, test);
 
+	int random = rand(10, 30);
+	int i = 0;
 
-	// PCB_p test2 = dequeue(myFIFO);
-    //
-	// char * testStr = malloc(50);
-	// PCB_toString(test2, testStr);
-	// printf("contents: %s", testStr);
+	for (i = 0; i < random; i++) {
+		enqueue(myFIFO, test);
+		char * testStr = malloc(10000);
+		FIFO_toString(myFIFO, testStr);
+		printf("%s\n", testStr);
+	}
 
-    char * testStr = malloc(10000);
-    FIFO_toString(myFIFO, testStr);
-    printf("YO: %s", testStr);
+	FIFO_deconstruct(myFIFO);
 }

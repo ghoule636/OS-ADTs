@@ -9,12 +9,14 @@
 
 typedef struct Node {
     PCB_p data;
-    struct Node* head;
-    struct Node* tail;
 	struct Node* next;
 } Node;
 
-typedef struct Node *FIFO;
+typedef struct FIFO {
+    struct Node* head;
+    struct Node* tail;
+    int size;
+} *FIFO;
 
 FIFO FIFO_construct(void);
 void FIFO_init(FIFO theFIFO);
