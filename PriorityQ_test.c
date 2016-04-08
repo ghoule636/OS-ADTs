@@ -2,11 +2,13 @@
  * Group 3 OS ADTs
  */
 
+#include <time.h>
 #include "PCB.h"
 #include "FIFO.h"
 #include "PriorityQ.h"
 
 int main() {
+  srand(time(NULL));
   int i, j;
   PQ_p priorityTest = PQ_construct();
   char * testStr = malloc(50);
