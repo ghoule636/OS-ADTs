@@ -68,13 +68,13 @@ void FIFO_toString(FIFO theFIFO, char *theStr) {
        happen to know. */
 
     // OPTION 1 - Ideally, this is what I'd like to work...
-    // loops = theFIFO->size;
+     loops += theFIFO->size;
 
     // OPTION 2 - Loop to equivelance
     // while (loops != theFIFO->size) loops += 1;
 
     // OPTION 3 - Temporarily hard coded.
-    loops = 10;
+    //loops = 10;
 
 
     sprintf(buf, "Q:Count=%d: ", loops); // puts string into buffer

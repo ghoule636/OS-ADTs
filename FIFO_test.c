@@ -1,5 +1,6 @@
 #include <time.h>
-#include "FIFO.c"
+#include "PCB.h"
+#include "FIFO.h"
 
 int main() {
 	srand(time(NULL));
@@ -11,7 +12,7 @@ int main() {
 	PCB_p testPCB = PCB_construct();
     PCB_init(testPCB);
 
-	for (i = 0; i < random; i++) {
+	for (i = 0; i < 5; i++) {
 		enqueue(testFIFO, testPCB);
 		char * testStr = malloc(10000);
 		FIFO_toString(testFIFO, testStr);
