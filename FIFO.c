@@ -46,6 +46,28 @@ PCB_p dequeue(FIFO theNode) {
   return value;
 }
 
-// void toString(void) {
-//
-// }
+void FIFO_toString(FIFO theNode, char *theStr) {
+
+  if (theStr) {
+
+	while (1) {
+
+		PCB_p liveData = dequeue(theNode);
+		printf("\n\n\ntest\n\n\n");
+
+		if (liveData == NULL) {
+			printf("Breaking");
+			break;
+		}
+		// enqueue(tempFIFO, liveData);
+
+
+		char * pcbString = malloc(50);
+		PCB_toString(liveData, pcbString);
+		printf("YO: %s", pcbString);
+
+		strcat(theStr,pcbString);
+		strcat(theStr,"\n");
+	}
+  }
+}
