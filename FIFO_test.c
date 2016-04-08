@@ -13,36 +13,34 @@ int main() {
 	FIFO testFIFO = FIFO_construct();
 	FIFO_init(testFIFO);
 
-  char * testStr = malloc(1000);
-  char * pcbString = malloc(50);
+ 	char * testStr = malloc(1000);
+ 	char * pcbString = malloc(50);
 
 	for (i = 1; i <= random; i++) {
-    PCB_p testPCB = PCB_construct();
-    PCB_init(testPCB);
+    	PCB_p testPCB = PCB_construct();
+    	PCB_init(testPCB);
 
-    PCB_set_pid(testPCB, i);
-    PCB_set_priority(testPCB, rand() % 16);
-
+    	PCB_set_pid(testPCB, i);
+    	PCB_set_priority(testPCB, rand() % 16);
 		enqueue(testFIFO, testPCB);
-
 		FIFO_toString(testFIFO, testStr);
 		printf("Q:%s ", testStr);
-    
-    PCB_toString(testPCB, pcbString);
-    printf("%s\n", pcbString);
+
+    	PCB_toString(testPCB, pcbString);
+    	printf("%s\n", pcbString);
 	}
 
-  for (i = 1; i < random; i++) {
-    PCB_p testPCB = dequeue(testFIFO);
-    FIFO_toString(testFIFO, testStr);
-    printf("Q:%s ", testStr);
+	for (i = 1; i < random; i++) {
+		PCB_p testPCB = dequeue(testFIFO);
+		FIFO_toString(testFIFO, testStr);
+		printf("Q:%s ", testStr);
 
-    PCB_toString(testPCB, pcbString);
-    printf("%s\n", pcbString);
-    PCB_destruct(testPCB);
-  }
-
-  free(testStr);
+		PCB_toString(testPCB, pcbString);
+    	printf("%s\n", pcbString);
+    	PCB_destruct(testPCB);
+	}
+	free(testStr);
+	free(pcbString);
 	FIFO_deconstruct(testFIFO);
-  return 0;
+	return 0;
 }

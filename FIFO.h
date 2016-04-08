@@ -7,14 +7,14 @@
 #include <string.h>
 
 typedef struct Node {
-  PCB_p data;
+    PCB_p data;
 	struct Node* next;
 } Node;
 
 typedef struct FIFO {
-  struct Node* head;
-  struct Node* tail;
-  int size;
+    int size;
+    struct Node* head;
+    struct Node* tail;
 } *FIFO;
 
 FIFO FIFO_construct(void);
