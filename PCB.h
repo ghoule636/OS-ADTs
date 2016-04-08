@@ -21,7 +21,7 @@ typedef struct PCB * PCB_p;
 PCB_p PCB_construct(void); // returns a pcb pointer to heap allocation
 void PCB_destruct(PCB_p);  // deallocates pcb from the heap
 void PCB_init(PCB_p);       // sets default values for member data
-int PCB_set_pid(PCB_p, unsigned long pid); //sets value of pid for this process
+void PCB_set_pid(PCB_p, unsigned long pid); //sets value of pid for this process
 unsigned short PCB_get_priority(PCB_p);
 void PCB_set_priority(PCB_p, unsigned short);
 void PCB_set_state(PCB_p, state_type);
