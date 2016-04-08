@@ -1,7 +1,14 @@
+/*
+ * Group 3 OS ADTs
+ */
+
+#ifndef Q
+#define Q
 #include "FIFO.h"
+#endif
 
 FIFO FIFO_construct(void) {
-  FIFO result = (struct FIFO*) malloc(sizeof(FIFO));
+  FIFO result = (FIFO) malloc(sizeof(FIFO));
   return result;
 }
 
@@ -40,33 +47,28 @@ PCB_p dequeue(FIFO theNode) {
     return value;
 }
 
-// void toString(void) {
-//
-// }
+void FIFO_toString(FIFO theNode, char *theStr) {
 
-int main() {
+  if (theStr) {
 
-	FIFO myFIFO = FIFO_construct();
-	FIFO_init(myFIFO);
+	while (1) {
 
+		PCB_p liveData = dequeue(theNode);
+		printf("\n\n\ntest\n\n\n");
 
-	PCB_p test = PCB_construct();
-    PCB_init(test);
-
-	enqueue(myFIFO, test);
-
-	PCB_p test2 = dequeue(myFIFO);
-
-	char * testStr = malloc(50);
-	PCB_toString(test2, testStr);
-	printf("contents: %s", testStr);
+		if (liveData == NULL) {
+			printf("Breaking");
+			break;
+		}
+		// enqueue(tempFIFO, liveData);
 
 
+		char * pcbString = malloc(50);
+		PCB_toString(liveData, pcbString);
+		printf("YO: %s", pcbString);
 
-
-
-
-
-
-
+		strcat(theStr,pcbString);
+		strcat(theStr,"\n");
+	}
+  }
 }
