@@ -28,6 +28,8 @@ void enqueue(FIFO theFIFO, PCB_p theElement) {
     theFIFO->size = theFIFO->size + 1;
 	struct Node* temp = (struct Node*) malloc(sizeof(Node));
 	temp->data = theElement;
+    printf("THE FUCK %d?\n", theFIFO->size);
+
     temp->next = NULL;
 	if(theFIFO->head == NULL && theFIFO->tail == NULL){
 		theFIFO->head = theFIFO->tail = temp;
@@ -48,15 +50,16 @@ PCB_p dequeue(FIFO theFIFO) {
         value = theFIFO->head->data;
 		theFIFO->head = theFIFO->head->next;
 	}
-    if (value != NULL) theFIFO->size = theFIFO->size - 1;
+    if (value != NULL) {
+        theFIFO->size = theFIFO->size - 1;
+    }
     return value;
 }
 
 void FIFO_toString(FIFO theFIFO, char *theStr) {
-
-  if (theStr) {
-    int i, loops = 0;
-    char buf[13];
+    if (theStr) {
+        int i, loops = 0;
+        char buf[13];
 
     // printf("\n\nsize = %d\n\n\n", theFIFO->size);
     // printf("\n\nloops = %d\n\n\n", loops);
@@ -74,32 +77,37 @@ void FIFO_toString(FIFO theFIFO, char *theStr) {
     // while (loops != theFIFO->size) loops += 1;
 
     // OPTION 3 - Temporarily hard coded.
+<<<<<<< HEAD
+        loops = 10;
+=======
     //loops = 10;
 
+>>>>>>> master
 
-    sprintf(buf, "Q:Count=%d: ", loops); // puts string into buffer
-    strcat(theStr,buf);
 
-    for (i = 1; i <= loops; i++) {
-        if (i < loops) sprintf(buf, "P%d->", i);
-        if (i == loops) sprintf(buf, "P%d-*", i);
+        sprintf(buf, "Q:Count=%d: ", loops); // puts string into buffer
         strcat(theStr,buf);
+
+        for (i = 1; i <= loops; i++) {
+            if (i < loops) sprintf(buf, "P%d->", i);
+            if (i == loops) sprintf(buf, "P%d-*", i);
+            strcat(theStr,buf);
+        }
+        strcat(theStr," : contents: ");
+
+
+    	for (i = 0; i < loops; i++) {
+    		PCB_p liveData = dequeue(theFIFO); // Pick off the head of the queue
+    		enqueue(theFIFO, liveData); // Put it on the back
+
+            // Preparing string for specific node
+    		char * pcbString = malloc(50);
+    		PCB_toString(liveData, pcbString);
+
+            // Concatenating the node's pcb
+    		strcat(theStr,pcbString);
+            if (i < loops - 1) strcat(theStr,", ");
+    	}
+        strcat(theStr,"\n");
     }
-    strcat(theStr," : contents: ");
-
-
-	for (i = 0; i < loops; i++) {
-		PCB_p liveData = dequeue(theFIFO); // Pick off the head of the queue
-		enqueue(theFIFO, liveData); // Put it on the back
-
-        // Preparing string for specific node
-		char * pcbString = malloc(50);
-		PCB_toString(liveData, pcbString);
-
-        // Concatenating the node's pcb
-		strcat(theStr,pcbString);
-        if (i < loops - 1) strcat(theStr,", ");
-	}
-    strcat(theStr,"\n");
-  }
 }
