@@ -1,3 +1,7 @@
+/*
+* Group 3 OS ADTs
+*/
+
 #include <time.h>
 #include "PCB.h"
 #include "FIFO.h"
@@ -9,15 +13,36 @@ int main() {
 	FIFO testFIFO = FIFO_construct();
 	FIFO_init(testFIFO);
 
-	PCB_p testPCB = PCB_construct();
+  char * testStr = malloc(1000);
+  char * pcbString = malloc(50);
+
+	for (i = 1; i <= random; i++) {
+    PCB_p testPCB = PCB_construct();
     PCB_init(testPCB);
 
-	for (i = 0; i < 5; i++) {
+    PCB_set_pid(testPCB, i);
+    PCB_set_priority(testPCB, rand() % 16);
+
 		enqueue(testFIFO, testPCB);
-		char * testStr = malloc(10000);
+
 		FIFO_toString(testFIFO, testStr);
-		printf("%s\n", testStr);
+		printf("Q:%s ", testStr);
+    
+    PCB_toString(testPCB, pcbString);
+    printf("%s\n", pcbString);
 	}
 
+  for (i = 1; i < random; i++) {
+    PCB_p testPCB = dequeue(testFIFO);
+    FIFO_toString(testFIFO, testStr);
+    printf("Q:%s ", testStr);
+
+    PCB_toString(testPCB, pcbString);
+    printf("%s\n", pcbString);
+    PCB_destruct(testPCB);
+  }
+
+  free(testStr);
 	FIFO_deconstruct(testFIFO);
+  return 0;
 }
