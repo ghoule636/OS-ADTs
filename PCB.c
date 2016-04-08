@@ -28,7 +28,7 @@ void PCB_init(PCB_p thePCB) {
   thePCB->pc = 0;
 }
 
-int PCB_set_pid(PCB_p thePCB, unsigned long thePID) {
+void PCB_set_pid(PCB_p thePCB, unsigned long thePID) {
   if (thePID) {
     thePCB->pid = thePID;
   }
@@ -74,7 +74,7 @@ void PCB_toString(PCB_p thePCB, char *theStr) {
       strcpy(state, "halted");
     }
 
-    sprintf(theStr, "PID: 0x%X, State: %s, Priority: 0x%X, PC: 0x%X",
+    sprintf(theStr, "PID: 0x%lu, State: %s, Priority: 0x%X, PC: 0x%lu\n",
       thePCB->pid, state, thePCB->priority, thePCB->pc);
   }
 }
