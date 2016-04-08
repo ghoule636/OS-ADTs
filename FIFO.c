@@ -26,7 +26,7 @@ void enqueue(FIFO theNode, PCB_p theElement) {
 
 	temp->data = theElement;
 
-	if(theNode->head == NULL && theNode->tail == NULL){
+	if(theNode->head == NULL && theNode->tail == NULL) {
 		theNode->head = theNode->tail = temp;
 		return;
 	}
@@ -35,16 +35,15 @@ void enqueue(FIFO theNode, PCB_p theElement) {
 }
 
 PCB_p dequeue(FIFO theNode) {
-    PCB_p value = NULL; // No value in queue
+  PCB_p value = NULL; // No value in queue
 	if(theNode->head == theNode->tail) {
-        value = theNode->head->data;
-		theNode->head = theNode->tail = NULL;
+    value = theNode->head->data;
+	  theNode->head = theNode->tail = NULL;
+  } else if (theNode->head != NULL) {
+    value = theNode->head->data;
+	  theNode->head = theNode->head->next;
 	}
-	else if (theNode->head != NULL){
-        value = theNode->head->data;
-		theNode->head = theNode->head->next;
-	}
-    return value;
+  return value;
 }
 
 // void toString(void) {
