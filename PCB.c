@@ -23,7 +23,7 @@ void PCB_init(PCB_p thePCB) {
   //not sure what values to give.
 
   thePCB->state = new;
-  thePCB->priority = 15; // lowest priority?
+  thePCB->priority = 15; // lowest priority is default
   thePCB->pid = 0;
   thePCB->pc = 0;
 }

@@ -39,6 +39,7 @@ void enqueue(FIFO theFIFO, PCB_p theElement) {
 	theFIFO->tail = temp;
 }
 
+
 PCB_p dequeue(FIFO theFIFO) {
     PCB_p value = NULL; // No value in queue
 	if(theFIFO->head == theFIFO->tail) {
@@ -70,13 +71,18 @@ void FIFO_toString(FIFO theFIFO, char *theStr) {
        happen to know. */
 
     // OPTION 1 - Ideally, this is what I'd like to work...
-    // loops = theFIFO->size;
+     loops += theFIFO->size;
 
     // OPTION 2 - Loop to equivelance
     // while (loops != theFIFO->size) loops += 1;
 
     // OPTION 3 - Temporarily hard coded.
+<<<<<<< HEAD
         loops = 10;
+=======
+    //loops = 10;
+
+>>>>>>> master
 
 
         sprintf(buf, "Q:Count=%d: ", loops); // puts string into buffer
